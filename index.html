@@ -27,10 +27,12 @@
       --heading-font: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --mono-font: "JetBrains Mono", monospace;
       --brand-red: #e11d48;
+      --brand-red-glow: rgba(225, 29, 72, 0.14);
       --neutral-bg-start: #0D0D0D;
+      --neutral-bg-mid: #141414;
       --neutral-bg-end: #1A1A1A;
-      --card-bg: rgba(255, 255, 255, 0.04);
-      --card-border: rgba(255, 255, 255, 0.08);
+      --panel-bg: rgba(24, 24, 24, 0.55);
+      --panel-border: rgba(255, 255, 255, 0.09);
       --saf-green: #25d366;
     }
 
@@ -48,11 +50,26 @@
       color: #f3f4f6;
     }
 
-    /* 1. NEUTRAL CHARCOAL-BLACK GRADIENT (NO NAVY/BLUE UNDERTONES) */
+    /* 1. BASE: NEUTRAL CHARCOAL-BLACK GRADIENT (NO NAVY/BLUE UNDERTONES) */
     body {
-      background: linear-gradient(180deg, #0D0D0D 0%, #141414 45%, #1A1A1A 100%);
+      background: linear-gradient(180deg, var(--neutral-bg-start) 0%, var(--neutral-bg-mid) 45%, var(--neutral-bg-end) 100%);
       min-height: 100vh;
       position: relative;
+    }
+
+    /* Subtle Warm Red Glow in the Background Header/Hero */
+    .glow-red-ambient {
+      position: absolute;
+      top: 8%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 380px;
+      max-width: 95vw;
+      background: radial-gradient(ellipse, rgba(225, 29, 72, 0.08) 0%, rgba(225, 29, 72, 0.02) 50%, transparent 70%);
+      filter: blur(70px);
+      pointer-events: none;
+      z-index: 1;
     }
 
     .content-layer {
@@ -66,11 +83,11 @@
       letter-spacing: -0.02em;
     }
 
-    /* Sticky Navbar */
+    /* Translucent Frosted Sticky Navbar */
     .header {
-      background: rgba(13, 13, 13, 0.88);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
+      background: rgba(13, 13, 13, 0.78);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
       padding: 15px 0;
       position: sticky;
@@ -78,7 +95,7 @@
       z-index: 100;
     }
 
-    /* WhatsApp Button Styles */
+    /* WhatsApp Button */
     .btn-whatsapp-nav {
       background: var(--saf-green);
       color: #ffffff !important;
@@ -151,57 +168,65 @@
       margin-bottom: 18px;
       letter-spacing: -0.03em;
     }
+    .hero-title .accent-soft-red {
+      color: var(--brand-red);
+    }
 
     .hero-desc {
       font-size: clamp(0.95rem, 2.2vw, 1.15rem);
       line-height: 1.65;
-      color: rgba(255, 255, 255, 0.72);
+      color: rgba(255, 255, 255, 0.75);
       max-width: 680px;
       margin: 0 auto 28px auto;
     }
 
-    /* 1. MINIMALIST LINE-ART HOURGLASS SVG WITH TRICKLING PARTICLES (5-8% OPACITY) */
+    /* 2 & 3. COUNTDOWN WRAPPER WITH RENDERED HOURGLASS & SUBTLE WARM RED GLOW */
     .countdown-wrapper {
       position: relative;
       max-width: 580px;
-      margin: 10px auto 26px auto;
+      margin: 12px auto 28px auto;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
+    /* Soft Warm Red Radial Glow centered behind the countdown */
+    .glow-red-accent {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 520px;
+      height: 380px;
+      max-width: 94vw;
+      background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(190, 18, 60, 0.06) 45%, transparent 72%);
+      filter: blur(55px);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* Rendered Hourglass Image Blended into Background (Darkened/Atmospheric Low Opacity) */
     .hourglass-backdrop {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 320px;
-      height: 380px;
-      max-width: 88vw;
+      width: 440px;
+      height: 440px;
+      max-width: 90vw;
+      background-image: url('assets/img/hourglass.jpg');
+      background-position: center center;
+      background-size: contain;
+      background-repeat: no-repeat;
+      opacity: 0.18; /* Atmospheric low-to-moderate opacity */
+      mix-blend-mode: screen; /* Seamlessly blends into the dark background */
+      mask-image: radial-gradient(circle at center, black 42%, transparent 75%);
+      -webkit-mask-image: radial-gradient(circle at center, black 42%, transparent 75%);
       pointer-events: none;
       z-index: 0;
-      opacity: 0.07; /* Clean 7% opacity subtle texture */
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hourglass-svg {
-      width: 100%;
-      height: 100%;
     }
 
-    @keyframes sandDrop {
-      0% { transform: translateY(0); opacity: 0; }
-      20% { opacity: 0.9; }
-      80% { opacity: 0.9; }
-      100% { transform: translateY(75px); opacity: 0; }
-    }
-    .sand-grain-1 { animation: sandDrop 2.6s linear infinite; }
-    .sand-grain-2 { animation: sandDrop 2.6s linear infinite 0.65s; }
-    .sand-grain-3 { animation: sandDrop 2.6s linear infinite 1.3s; }
-    .sand-grain-4 { animation: sandDrop 2.6s linear infinite 1.95s; }
-
-    /* 2. COUNTDOWN GRID & JETBRAINS MONO NUMBERS */
+    /* Semi-Transparent Layered Countdown Cards (Depth + Full Legibility) */
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -213,15 +238,15 @@
       padding: 0 4px;
     }
     .countdown-card {
-      background: rgba(255, 255, 255, 0.035);
-      border: 1px solid rgba(255, 255, 255, 0.09);
-      border-top: 2px solid rgba(255, 255, 255, 0.25) !important;
-      border-radius: 14px;
+      background: rgba(22, 22, 22, 0.62);
+      border: 1px solid rgba(255, 255, 255, 0.11);
+      border-top: 2px solid rgba(225, 29, 72, 0.55) !important;
+      border-radius: 16px;
       padding: 16px 8px;
       text-align: center;
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
     }
     .countdown-card h3 {
       font-family: var(--mono-font) !important;
@@ -232,6 +257,7 @@
       line-height: 1;
       font-variant-numeric: tabular-nums;
       letter-spacing: -0.02em;
+      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
     }
     .countdown-card h4 {
       font-family: var(--default-font);
@@ -243,15 +269,17 @@
       font-weight: 600;
     }
 
-    /* Newsletter Form */
+    /* Translucent Newsletter Form Box */
     .newsletter-form-box {
       max-width: 480px;
       margin: 0 auto;
-      background: rgba(255, 255, 255, 0.05);
+      background: rgba(24, 24, 24, 0.65);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
       padding: 5px;
       display: flex;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
     }
     .newsletter-form-box input[type="email"] {
@@ -292,22 +320,25 @@
       margin-top: 24px;
     }
 
-    /* Capabilities / What We Build */
+    /* Translucent Capabilities Panels with Depth */
     .about-section {
       padding: 50px 0 65px 0;
     }
     .feature-card {
-      background: var(--card-bg);
-      border: 1px solid var(--card-border);
+      background: var(--panel-bg);
+      border: 1px solid var(--panel-border);
       border-radius: 16px;
       padding: 28px 24px;
       text-align: left;
       height: 100%;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
       transition: all 0.3s ease;
     }
     .feature-card:hover {
-      border-color: rgba(255, 255, 255, 0.2);
-      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(225, 29, 72, 0.35);
+      background: rgba(30, 30, 30, 0.7);
       transform: translateY(-2px);
     }
     .feature-card h4 {
@@ -332,11 +363,11 @@
       }
       .countdown-card {
         padding: 12px 2px;
-        border-radius: 10px;
+        border-radius: 12px;
       }
       .hourglass-backdrop {
-        width: 250px;
-        height: 300px;
+        width: 320px;
+        height: 320px;
       }
       .newsletter-form-box {
         flex-direction: column;
@@ -361,9 +392,12 @@
 
 <body>
 
+  <!-- Subtle Ambient Glow at Top -->
+  <div class="glow-red-ambient"></div>
+
   <div class="content-layer">
 
-    <!-- 8. Header (Capabilities link removed) -->
+    <!-- Header -->
     <header id="header" class="header">
       <div class="container-fluid px-3 px-sm-4 d-flex align-items-center justify-content-between max-w-6xl">
 
@@ -373,7 +407,7 @@
           </h1>
         </a>
 
-        <!-- 5. Simplified WhatsApp Button ("Talk to us") -->
+        <!-- Simplified WhatsApp Button ("Talk to us") -->
         <a href="https://wa.me/254793544968?text=Hello%20Blackcess%20Softwares%2C%20I%20would%20like%20to%20inquire%20about%20a%20software%20project" 
            target="_blank" 
            class="btn-whatsapp-nav">
@@ -391,14 +425,12 @@
           <div class="row justify-content-center">
             <div class="col-lg-9">
               
-              <!-- 4. Launch badge removed -->
-
-              <!-- 5. Updated Headline -->
+              <!-- Updated Headline with Soft Red Accent -->
               <h2 class="hero-title">
-                Building the Next Generation of Software
+                Building the Next Generation of <span class="accent-soft-red">Software</span>
               </h2>
 
-              <!-- Subtitle: No mention of "30 days" -->
+              <!-- Subtitle -->
               <p class="hero-desc">
                 We are finalizing our brand-new digital ecosystem. High-performance custom web applications, 
                 enterprise ERP & POS platforms, and automated <strong>Safaricom Daraja 2.0 M-Pesa integrations</strong> 
@@ -406,41 +438,17 @@
               </p>
             </div>
 
-            <!-- 1. Countdown Section with Minimalist Line-Art Hourglass & Sand Particles -->
+            <!-- Countdown Section with Atmospheric Rendered Hourglass & Soft Red Ambient Glow -->
             <div class="col-12">
               <div class="countdown-wrapper">
                 
-                <!-- Line-Art SVG Hourglass Accent (5-8% opacity) -->
-                <div class="hourglass-backdrop">
-                  <svg class="hourglass-svg" viewBox="0 0 200 280" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Top & Bottom horizontal caps -->
-                    <line x1="30" y1="20" x2="170" y2="20" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
-                    <line x1="42" y1="26" x2="158" y2="26" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-                    <line x1="42" y1="254" x2="158" y2="254" stroke="#ffffff" stroke-width="1.2" stroke-linecap="round"/>
-                    <line x1="30" y1="260" x2="170" y2="260" stroke="#ffffff" stroke-width="2" stroke-linecap="round"/>
+                <!-- Warm Red Ambient Glow Centered Behind Countdown -->
+                <div class="glow-red-accent"></div>
 
-                    <!-- Smooth Hourglass Waistline Contours -->
-                    <path d="M 46,26 C 46,90 92,130 96,140 C 92,150 46,190 46,254" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
-                    <path d="M 154,26 C 154,90 108,130 104,140 C 108,150 154,190 154,254" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round"/>
+                <!-- High-Quality Rendered Hourglass Blended Background (Atmospheric Low Opacity) -->
+                <div class="hourglass-backdrop"></div>
 
-                    <!-- Top Bulb Sand Level -->
-                    <path d="M 62,92 Q 100,106 138,92" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 3"/>
-                    
-                    <!-- Bottom Bulb Accumulated Sand -->
-                    <path d="M 68,246 Q 100,214 132,246" stroke="#ffffff" stroke-width="1.2"/>
-
-                    <!-- Trickling Sand Center Guide -->
-                    <line x1="100" y1="140" x2="100" y2="225" stroke="#ffffff" stroke-width="1" stroke-dasharray="3 5"/>
-
-                    <!-- Animated Trickling Sand Grains -->
-                    <circle cx="100" cy="144" r="1.5" fill="#ffffff" class="sand-grain-1"/>
-                    <circle cx="100" cy="162" r="1.2" fill="#ffffff" class="sand-grain-2"/>
-                    <circle cx="100" cy="184" r="1.5" fill="#ffffff" class="sand-grain-3"/>
-                    <circle cx="100" cy="208" r="1.2" fill="#ffffff" class="sand-grain-4"/>
-                  </svg>
-                </div>
-
-                <!-- 2. Countdown Grid (JetBrains Mono Numbers) -->
+                <!-- Real-Time Countdown Grid (JetBrains Mono Numbers) -->
                 <div class="countdown countdown-grid">
                   <div class="countdown-card">
                     <h3 id="count-days">--</h3>
@@ -463,7 +471,7 @@
               </div>
             </div>
 
-            <!-- 3. VIP Early Access Form (Stray "Saving..." placeholder removed) -->
+            <!-- VIP Early Access Form -->
             <div class="col-lg-6 my-2">
               <p class="text-white-50 small mb-2">Be the first to explore the new platform & unlock launch offers:</p>
               <form action="javascript:void(0);" method="post" class="php-email-form">
@@ -476,7 +484,7 @@
               </form>
             </div>
 
-            <!-- 5. Simplified Hero Action Buttons ("Talk to us") -->
+            <!-- Hero Action Buttons ("Talk to us") -->
             <div class="col-12">
               <div class="cta-container">
                 <a href="https://wa.me/254793544968?text=Hello%20Blackcess%20Softwares%2C%20I%20have%20an%20urgent%20project%20inquiry" 
@@ -484,7 +492,6 @@
                    class="btn-whatsapp-hero">
                   <i class="bi bi-whatsapp fs-5"></i> <span>Talk to us</span>
                 </a>
-                <!-- 6. Email points to info@blackcesssoftwares.co.ke -->
                 <a href="mailto:info@blackcesssoftwares.co.ke?subject=Project%20Inquiry%20-%20Blackcess%20Softwares" 
                    class="btn-cta-outline">
                   <i class="bi bi-envelope fs-5"></i> Email Us Directly
@@ -496,7 +503,7 @@
         </div>
       </section>
 
-      <!-- 7. Capabilities Section (Service card icons removed) -->
+      <!-- Capabilities Section (Translucent Panels with Depth) -->
       <section id="about" class="about-section">
         <div class="container px-3 px-sm-4">
           
@@ -510,7 +517,7 @@
           </div>
 
           <div class="row g-3 g-md-4">
-            <!-- Card 1: Icon removed -->
+            <!-- Card 1 -->
             <div class="col-12 col-md-4">
               <div class="feature-card">
                 <h4>Safaricom Daraja 2.0</h4>
@@ -521,7 +528,7 @@
               </div>
             </div>
 
-            <!-- Card 2: Icon removed -->
+            <!-- Card 2 -->
             <div class="col-12 col-md-4">
               <div class="feature-card">
                 <h4>Custom Software & Web</h4>
@@ -532,7 +539,7 @@
               </div>
             </div>
 
-            <!-- Card 3: Icon removed -->
+            <!-- Card 3 -->
             <div class="col-12 col-md-4">
               <div class="feature-card">
                 <h4>POS & Enterprise ERP</h4>
@@ -545,16 +552,16 @@
           </div>
 
           <!-- Trust Strip -->
-          <div class="mt-4 mt-md-5 p-3 p-md-4 rounded-4 text-center" style="background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.07);">
+          <div class="mt-4 mt-md-5 p-3 p-md-4 rounded-4 text-center" style="background: rgba(24, 24, 24, 0.45); border: 1px solid rgba(255,255,255,0.07); backdrop-filter: blur(12px);">
             <div class="row align-items-center justify-content-center g-2 g-md-3">
               <div class="col-12 col-md-auto">
                 <span class="text-white-50 small fw-semibold text-uppercase tracking-wider">Trusted by Industry Pioneers:</span>
               </div>
               <div class="col-12 col-md-auto d-flex flex-wrap justify-content-center gap-2 text-white fw-semibold small">
-                <span class="px-2.5 py-1 rounded bg-dark border border-secondary">Urban Smiles Dental</span>
-                <span class="px-2.5 py-1 rounded bg-dark border border-secondary">Urban Wheels Ltd</span>
-                <span class="px-2.5 py-1 rounded bg-dark border border-secondary">Pili Restaurant</span>
-                <span class="px-2.5 py-1 rounded bg-dark border border-secondary">East End Dental Clinic</span>
+                <span class="px-2.5 py-1 rounded border border-secondary" style="background: rgba(20,20,20,0.6);">Urban Smiles Dental</span>
+                <span class="px-2.5 py-1 rounded border border-secondary" style="background: rgba(20,20,20,0.6);">Urban Wheels Ltd</span>
+                <span class="px-2.5 py-1 rounded border border-secondary" style="background: rgba(20,20,20,0.6);">Pili Restaurant</span>
+                <span class="px-2.5 py-1 rounded border border-secondary" style="background: rgba(20,20,20,0.6);">East End Dental Clinic</span>
               </div>
             </div>
           </div>
@@ -564,8 +571,8 @@
 
     </main>
 
-    <!-- 6. Footer (GitHub removed, Email points to info@blackcesssoftwares.co.ke) -->
-    <footer id="footer" class="footer border-top border-secondary pt-4 pb-4 mt-4" style="background: #0D0D0D;">
+    <!-- Footer -->
+    <footer id="footer" class="footer border-top border-secondary pt-4 pb-4 mt-4" style="background: rgba(13, 13, 13, 0.95);">
       <div class="container text-center px-3">
         <div class="mb-3">
           <h5 class="sitename text-white fw-bold mb-1">Blackcess Softwares</h5>
