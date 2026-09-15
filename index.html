@@ -27,11 +27,10 @@
       --heading-font: "Space Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       --mono-font: "JetBrains Mono", monospace;
       --brand-red: #e11d48;
-      --brand-red-glow: rgba(225, 29, 72, 0.14);
       --neutral-bg-start: #0D0D0D;
       --neutral-bg-mid: #141414;
       --neutral-bg-end: #1A1A1A;
-      --panel-bg: rgba(24, 24, 24, 0.55);
+      --panel-bg: rgba(22, 22, 22, 0.65);
       --panel-border: rgba(255, 255, 255, 0.09);
       --saf-green: #25d366;
     }
@@ -50,26 +49,11 @@
       color: #f3f4f6;
     }
 
-    /* 1. BASE: NEUTRAL CHARCOAL-BLACK GRADIENT (NO NAVY/BLUE UNDERTONES) */
+    /* 1. BASE: NEUTRAL CHARCOAL-BLACK GRADIENT (#0D0D0D -> #1A1A1A) - ZERO BLUE TONES */
     body {
       background: linear-gradient(180deg, var(--neutral-bg-start) 0%, var(--neutral-bg-mid) 45%, var(--neutral-bg-end) 100%);
       min-height: 100vh;
       position: relative;
-    }
-
-    /* Subtle Warm Red Glow in the Background Header/Hero */
-    .glow-red-ambient {
-      position: absolute;
-      top: 8%;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 700px;
-      height: 380px;
-      max-width: 95vw;
-      background: radial-gradient(ellipse, rgba(225, 29, 72, 0.08) 0%, rgba(225, 29, 72, 0.02) 50%, transparent 70%);
-      filter: blur(70px);
-      pointer-events: none;
-      z-index: 1;
     }
 
     .content-layer {
@@ -85,7 +69,7 @@
 
     /* Translucent Frosted Sticky Navbar */
     .header {
-      background: rgba(13, 13, 13, 0.78);
+      background: rgba(13, 13, 13, 0.82);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
       border-bottom: 1px solid rgba(255, 255, 255, 0.07);
@@ -95,7 +79,7 @@
       z-index: 100;
     }
 
-    /* WhatsApp Button */
+    /* WhatsApp Button Styles */
     .btn-whatsapp-nav {
       background: var(--saf-green);
       color: #ffffff !important;
@@ -168,7 +152,7 @@
       margin-bottom: 18px;
       letter-spacing: -0.03em;
     }
-    .hero-title .accent-soft-red {
+    .hero-title .accent-red {
       color: var(--brand-red);
     }
 
@@ -180,53 +164,63 @@
       margin: 0 auto 28px auto;
     }
 
-    /* 2 & 3. COUNTDOWN WRAPPER WITH RENDERED HOURGLASS & SUBTLE WARM RED GLOW */
+    /* 2 & 3. CINEMATIC PHOTOGRAPHIC HOURGLASS WITH GLITTERING GOLD SAND & WARM RED ACCENT */
     .countdown-wrapper {
       position: relative;
-      max-width: 580px;
-      margin: 12px auto 28px auto;
+      max-width: 600px;
+      margin: 14px auto 30px auto;
       display: flex;
       justify-content: center;
       align-items: center;
     }
 
-    /* Soft Warm Red Radial Glow centered behind the countdown */
-    .glow-red-accent {
+    /* Soft Warm Red Radial Glow centered behind the hourglass base */
+    .hero-red-glow {
       position: absolute;
-      top: 50%;
+      top: 52%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 520px;
-      height: 380px;
-      max-width: 94vw;
-      background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(190, 18, 60, 0.06) 45%, transparent 72%);
+      width: 550px;
+      height: 420px;
+      max-width: 95vw;
+      background: radial-gradient(circle, rgba(225, 29, 72, 0.15) 0%, rgba(190, 18, 60, 0.05) 48%, transparent 72%);
       filter: blur(55px);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Rendered Hourglass Image Blended into Background (Darkened/Atmospheric Low Opacity) */
-    .hourglass-backdrop {
+    /* Photographic Hourglass Image: Dark, Moody, Gold Sand, Centered Around Countdown */
+    .hourglass-photo-bg {
       position: absolute;
-      top: 50%;
+      top: 48%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 440px;
-      height: 440px;
-      max-width: 90vw;
-      background-image: url('assets/img/hourglass.jpg');
-      background-position: center center;
-      background-size: contain;
+      width: 520px;
+      height: 690px;
+      max-width: 92vw;
+      background-image: url('assets/img/hourglass-gold.png');
       background-repeat: no-repeat;
-      opacity: 0.18; /* Atmospheric low-to-moderate opacity */
-      mix-blend-mode: screen; /* Seamlessly blends into the dark background */
-      mask-image: radial-gradient(circle at center, black 42%, transparent 75%);
-      -webkit-mask-image: radial-gradient(circle at center, black 42%, transparent 75%);
+      background-position: center 38%;
+      background-size: contain;
+      opacity: 0.32; /* Atmospheric texture, visible gold sand */
+      filter: contrast(1.1) brightness(0.9);
+      pointer-events: none;
+      z-index: 0;
+      /* Smooth feathering into the charcoal-black background */
+      mask-image: radial-gradient(ellipse at center 48%, black 40%, transparent 75%);
+      -webkit-mask-image: radial-gradient(ellipse at center 48%, black 40%, transparent 75%);
+    }
+
+    /* Semi-Transparent Scrim on Top of Hourglass */
+    .hourglass-scrim {
+      position: absolute;
+      inset: -40px;
+      background: radial-gradient(ellipse at center 50%, rgba(13, 13, 13, 0.5) 0%, rgba(13, 13, 13, 0.88) 75%);
       pointer-events: none;
       z-index: 0;
     }
 
-    /* Semi-Transparent Layered Countdown Cards (Depth + Full Legibility) */
+    /* Translucent Layered Countdown Cards (Full Contrast & Legibility) */
     .countdown-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
@@ -238,15 +232,15 @@
       padding: 0 4px;
     }
     .countdown-card {
-      background: rgba(22, 22, 22, 0.62);
-      border: 1px solid rgba(255, 255, 255, 0.11);
-      border-top: 2px solid rgba(225, 29, 72, 0.55) !important;
+      background: rgba(18, 18, 18, 0.75);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-top: 2px solid rgba(225, 29, 72, 0.65) !important;
       border-radius: 16px;
       padding: 16px 8px;
       text-align: center;
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.45);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.55);
     }
     .countdown-card h3 {
       font-family: var(--mono-font) !important;
@@ -257,7 +251,7 @@
       line-height: 1;
       font-variant-numeric: tabular-nums;
       letter-spacing: -0.02em;
-      text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+      text-shadow: 0 2px 14px rgba(0, 0, 0, 0.8);
     }
     .countdown-card h4 {
       font-family: var(--default-font);
@@ -273,14 +267,14 @@
     .newsletter-form-box {
       max-width: 480px;
       margin: 0 auto;
-      background: rgba(24, 24, 24, 0.65);
+      background: rgba(24, 24, 24, 0.7);
       border: 1px solid rgba(255, 255, 255, 0.12);
       border-radius: 12px;
       padding: 5px;
       display: flex;
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     }
     .newsletter-form-box input[type="email"] {
       flex: 1;
@@ -320,7 +314,7 @@
       margin-top: 24px;
     }
 
-    /* Translucent Capabilities Panels with Depth */
+    /* Translucent Capabilities Panels */
     .about-section {
       padding: 50px 0 65px 0;
     }
@@ -333,12 +327,12 @@
       height: 100%;
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
       transition: all 0.3s ease;
     }
     .feature-card:hover {
       border-color: rgba(225, 29, 72, 0.35);
-      background: rgba(30, 30, 30, 0.7);
+      background: rgba(30, 30, 30, 0.75);
       transform: translateY(-2px);
     }
     .feature-card h4 {
@@ -355,7 +349,7 @@
         padding-bottom: 35px;
       }
       .countdown-wrapper {
-        margin: 8px auto 20px auto;
+        margin: 10px auto 22px auto;
       }
       .countdown-grid {
         gap: 8px;
@@ -365,9 +359,9 @@
         padding: 12px 2px;
         border-radius: 12px;
       }
-      .hourglass-backdrop {
-        width: 320px;
-        height: 320px;
+      .hourglass-photo-bg {
+        width: 360px;
+        height: 480px;
       }
       .newsletter-form-box {
         flex-direction: column;
@@ -391,9 +385,6 @@
 </head>
 
 <body>
-
-  <!-- Subtle Ambient Glow at Top -->
-  <div class="glow-red-ambient"></div>
 
   <div class="content-layer">
 
@@ -427,7 +418,7 @@
               
               <!-- Updated Headline with Soft Red Accent -->
               <h2 class="hero-title">
-                Building the Next Generation of <span class="accent-soft-red">Software</span>
+                Building the Next Generation of <span class="accent-red">Software</span>
               </h2>
 
               <!-- Subtitle -->
@@ -438,15 +429,16 @@
               </p>
             </div>
 
-            <!-- Countdown Section with Atmospheric Rendered Hourglass & Soft Red Ambient Glow -->
+            <!-- Countdown Section: Photographic Hourglass with Gold Sand + Soft Red Glow -->
             <div class="col-12">
               <div class="countdown-wrapper">
                 
-                <!-- Warm Red Ambient Glow Centered Behind Countdown -->
-                <div class="glow-red-accent"></div>
+                <!-- Subtle Warm Red Radial Glow Centered Behind Hourglass Base -->
+                <div class="hero-red-glow"></div>
 
-                <!-- High-Quality Rendered Hourglass Blended Background (Atmospheric Low Opacity) -->
-                <div class="hourglass-backdrop"></div>
+                <!-- Photographic Hourglass with Glittering Gold Sand -->
+                <div class="hourglass-photo-bg"></div>
+                <div class="hourglass-scrim"></div>
 
                 <!-- Real-Time Countdown Grid (JetBrains Mono Numbers) -->
                 <div class="countdown countdown-grid">
