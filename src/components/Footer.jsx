@@ -1,4 +1,4 @@
-import React from 'react';
+﻿import React from 'react';
 import Logo from './Logo';
 import { Mail, Phone, MapPin, MessageCircle, ArrowUp } from 'lucide-react';
 
@@ -24,7 +24,7 @@ export default function Footer({ onOpenQuote }) {
               Get Started Today
             </button>
             <a
-              href="https://wa.me/254700000000?text=Hello%20Blackcess%20Softwares!"
+              href="https://wa.me/254793544968?text=Hello%20Blackcess%20Softwares!"
               target="_blank"
               rel="noreferrer"
               className="p-3 rounded-xl bg-white hover:bg-emerald-50 border border-slate-200 hover:border-emerald-500 text-emerald-600 transition-colors shadow-xs"

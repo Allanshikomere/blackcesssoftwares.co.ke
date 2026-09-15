@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+﻿import React, { useState, useMemo } from 'react';
 import confetti from 'canvas-confetti';
 import { 
   ShoppingBag, ArrowLeft, Search, X, Plus, Minus, Trash2, 
@@ -584,7 +584,7 @@ export default function StorePage({ onBackToCorporate }) {
 
                   <div className="flex flex-col sm:flex-row gap-3">
                     <a
-                      href={`https://wa.me/254700000000?text=Hello%20Blackcess%20Softwares!%20I%20just%20completed%20Order%20${orderSummary.orderId}%20for%20iPhone%20cases.%20Please%20confirm%20dispatch.`}
+                      href={`https://wa.me/254793544968?text=Hello%20Blackcess%20Softwares!%20I%20just%20completed%20Order%20${orderSummary.orderId}%20for%20iPhone%20cases.%20Please%20confirm%20dispatch.`}
                       target="_blank"
                       rel="noreferrer"
                       className="flex-1 py-3 px-4 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs uppercase tracking-wider text-center shadow-md shadow-emerald-600/20"

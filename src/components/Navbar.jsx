@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Logo from './Logo';
 import { Menu, X, Sparkles, MessageCircle, ArrowRight, ShoppingBag } from 'lucide-react';
 
@@ -79,7 +79,7 @@ export default function Navbar({ onOpenQuote, onNavigateToStore }) {
             </button>
 
             <a
-              href="https://wa.me/254700000000?text=Hello%20Blackcess%20Softwares,%20I%20would%20like%20to%20inquire%20about%20a%20project."
+              href="https://wa.me/254793544968?text=Hello%20Blackcess%20Softwares,%20I%20would%20like%20to%20inquire%20about%20a%20project."
               target="_blank"
               rel="noreferrer"
               className="flex items-center gap-2 text-xs font-semibold text-slate-700 hover:text-emerald-600 bg-white border border-slate-200 hover:border-emerald-500/40 px-3.5 py-2 rounded-xl shadow-xs transition-all"

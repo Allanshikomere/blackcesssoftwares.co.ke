@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+﻿import React, { useState } from 'react';
 import { Calculator, Check, MessageCircle, Sparkles, Clock, ShieldCheck } from 'lucide-react';
 
 export default function CostEstimator({ onOpenQuoteWithData }) {
@@ -59,7 +59,7 @@ export default function CostEstimator({ onOpenQuoteWithData }) {
       `• *Estimated Total:* ${formattedTotal}%0A%0A` +
       `Can we discuss detailed specifications and scheduling?`;
 
-    window.open(`https://wa.me/254700000000?text=${text}`, '_blank');
+    window.open(`https://wa.me/254793544968?text=${text}`, '_blank');
   };
 
   const handleProceedQuote = () => {

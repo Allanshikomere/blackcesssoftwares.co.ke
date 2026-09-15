@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -109,7 +109,7 @@ export default function App() {
       {/* Floating WhatsApp Action Pill */}
       <div className="fixed bottom-6 right-6 z-40">
         <a
-          href="https://wa.me/254700000000?text=Hello%20Blackcess%20Softwares,%20I'm%20interested%20in%20discussing%20a%20project!"
+          href="https://wa.me/254793544968?text=Hello%20Blackcess%20Softwares,%20I'm%20interested%20in%20discussing%20a%20project!"
           target="_blank"
           rel="noopener noreferrer"
           className="group flex items-center gap-2.5 px-4 py-3 rounded-full bg-emerald-600 hover:bg-emerald-500 text-white shadow-xl shadow-emerald-600/30 border border-emerald-400/40 transition-all duration-300 hover:scale-105 active:scale-95"

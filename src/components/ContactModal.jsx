@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+﻿import React, { useState, useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { X, Send, MessageCircle, CheckCircle, Sparkles } from 'lucide-react';
 
@@ -47,7 +47,7 @@ export default function ContactModal({ isOpen, onClose, initialData }) {
       `• *Phone:* ${formData.phone || 'N/A'}%0A` +
       `• *Details:* ${encodeURIComponent(formData.description || 'I would like to discuss a project.')}`;
 
-    window.open(`https://wa.me/254700000000?text=${text}`, '_blank');
+    window.open(`https://wa.me/254793544968?text=${text}`, '_blank');
   };
 
   return (
